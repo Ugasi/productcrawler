@@ -1,3 +1,3 @@
 from scrapy.cmdline import execute
 
-execute(['scrapy', 'crawl', 'verkkokauppa', '-o', 'verkkokauppa.json'])
+execute(['scrapy', 'crawl', 'tokmanni', '-o', 'tokmanni.json'])
