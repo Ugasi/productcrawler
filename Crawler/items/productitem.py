@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
-
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://doc.scrapy.org/en/latest/topics/items.html
-
+"""
+Scrapy product item class
+"""
 from scrapy import Item, Field
 
 class ProductItem(Item):
+    """
+    Scrapy product item class
+    """
     name = Field()
     price = Field()
     manufacturer = Field()

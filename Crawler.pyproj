@@ -19,7 +19,12 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Crawler\items.py" />
+    <Compile Include="Crawler\items\productitem.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Crawler\items\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Crawler\middlewares.py" />
     <Compile Include="Crawler\pipelines.py" />
     <Compile Include="Crawler\settings.py" />
@@ -41,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Crawler" />
+    <Folder Include="Crawler\items\" />
     <Folder Include="Crawler\utils\" />
     <Folder Include="Crawler\spiders" />
   </ItemGroup>

@@ -3,7 +3,7 @@
 Spider for parsing all products from Tokmanni
 """
 from scrapy import Spider, Request
-from Crawler.items import ProductItem
+from Crawler.items.productitem import ProductItem
 from Crawler.utils import tokmannixpath as xpath
 
 class TokmanniSpider(Spider):
