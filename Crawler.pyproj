@@ -23,6 +23,8 @@
     <Compile Include="Crawler\middlewares.py" />
     <Compile Include="Crawler\pipelines.py" />
     <Compile Include="Crawler\settings.py" />
+    <Compile Include="Crawler\spiders\tokmanni.py" />
+    <Compile Include="Crawler\spiders\verkkokauppa.py" />
     <Compile Include="Crawler\spiders\__init__.py" />
     <Compile Include="Crawler\__init__.py" />
     <Compile Include="runner.py">
