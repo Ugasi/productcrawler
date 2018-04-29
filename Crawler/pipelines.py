@@ -8,4 +8,5 @@
 
 class CrawlerPipeline(object):
     def process_item(self, item, spider):
+        item["name"] = item["name"].replace("\n", "").strip()
         return item

@@ -3,8 +3,10 @@
 Spider for parsing all products from Tokmanni
 """
 from scrapy import Spider, Request
-from Crawler.items.productitem import ProductItem
+from scrapy.loader import ItemLoader
+from scrapy.loader.processors import TakeFirst
 from Crawler.utils import tokmannixpath as xpath
+from Crawler.items.productitem import ProductItem
 
 class TokmanniSpider(Spider):
     """
@@ -28,29 +30,23 @@ class TokmanniSpider(Spider):
         category = response.xpath(xpath.CATEGORY_NAME).extract_first()
         product_wrapper = response.xpath(xpath.PRODUCT_WRAPPER)
         if product_wrapper:
-            for item in product_wrapper.xpath(xpath.PRODUCT_ITEM):
-                yield self.extract_product(category, item)
+            for product in product_wrapper.xpath(xpath.PRODUCT_ITEM):
+                yield self.extract_product(category, product)
             next_page = product_wrapper.xpath(xpath.NEXT_PAGE).extract_first()
             if next_page:
                 yield Request(response.urljoin(next_page), callback=self.parse_products)
 
     @staticmethod
-    def extract_product(category, item):
+    def extract_product(category, product):
         """
         Extract product information for single product
         """
-        product = ProductItem()
-        name = item.xpath(xpath.ITEM_NAME).extract_first()
-        price = item.xpath(xpath.ITEM_PRICE).extract_first()
-        manufacturer = item.xpath(xpath.ITEM_MANUFACTURER).extract_first()
-        product_code = item.xpath(xpath.ITEM_CODE).extract_first()
-        product_url = item.xpath(xpath.ITEM_URL).extract_first()
-        product_image = item.xpath(xpath.ITEM_IMAGE).extract_first()
-        product["name"] = name.replace("\n", "").strip()
-        product["price"] = price
-        product["manufacturer"] = manufacturer
-        product["product_code"] = product_code
-        product["category"] = category
-        product["product_url"] = product_url
-        product["product_image"] = product_image
-        return product
+        loader = ItemLoader(ProductItem(), product)
+        loader.add_xpath("name", xpath.ITEM_NAME)
+        loader.add_xpath("price", xpath.ITEM_PRICE)
+        loader.add_xpath("manufacturer", xpath.ITEM_MANUFACTURER)
+        loader.add_xpath("product_code", xpath.ITEM_CODE)
+        loader.add_value("category", category)
+        loader.add_xpath("product_url", xpath.ITEM_URL)
+        loader.add_xpath("product_image", xpath.ITEM_IMAGE)
+        return loader.load_item()
