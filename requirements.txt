@@ -42,7 +42,7 @@ service-identity==17.0.0
 setuptools==39.0.1
 six==1.11.0
 tqdm==4.11.2
-Twisted==17.9.0
+Twisted==19.7.0
 urllib3==1.22
 w3lib==1.19.0
 wrapt==1.10.11
