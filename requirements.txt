@@ -19,7 +19,7 @@ imageio==2.1.2
 incremental==17.5.0
 isort==4.3.4
 lazy-object-proxy==1.3.1
-lxml==4.2.1
+lxml==4.6.2
 mccabe==0.6.1
 moviepy==0.2.3.2
 numpy==1.14.2
